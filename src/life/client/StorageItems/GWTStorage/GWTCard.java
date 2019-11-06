@@ -32,7 +32,7 @@ public class GWTCard extends HTML {
 		super();
 		String uniqueID = generateID();
 		this.setHeight("12rem");
-		this.setWidth("7rem");
+		this.setWidth("7.25rem");
 		this.getElement().getStyle().setColor("transparent");
 		this.getElement().getStyle().setBorderWidth(2, Unit.PX);
 		this.getElement().getStyle().setBorderColor("black");
