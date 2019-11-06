@@ -1,0 +1,6 @@
+life.client
+life.client.DeckItems
+life.client.StorageItems
+life.client.StorageItems.GWTStorage
+life.model
+tests
