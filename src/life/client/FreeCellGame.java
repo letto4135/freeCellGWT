@@ -3,8 +3,6 @@ package life.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.EventTarget;
-import com.google.gwt.event.dom.client.DragOverEvent;
-import com.google.gwt.event.dom.client.DragOverHandler;
 import com.google.gwt.event.dom.client.DropEvent;
 import com.google.gwt.event.dom.client.DropHandler;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -27,10 +25,10 @@ import life.model.FreeCellModel;
 public class FreeCellGame implements EntryPoint {
 	private HorizontalPanel topPanel = new HorizontalPanel();
 	private HorizontalPanel bottomPanel = new HorizontalPanel();
-	private HorizontalPanel freecells = new HorizontalPanel();
-	private HorizontalPanel foundations = new HorizontalPanel();
-	private HorizontalPanel columns = new HorizontalPanel();
-	private FreeCellModel model = new FreeCellModel();
+	private static HorizontalPanel freecells = new HorizontalPanel();
+	private static HorizontalPanel foundations = new HorizontalPanel();
+	private static HorizontalPanel columns = new HorizontalPanel();
+	private static FreeCellModel model = new FreeCellModel();
 	/**
    	* This is the entry point method.
    	*/
@@ -62,26 +60,12 @@ public class FreeCellGame implements EntryPoint {
 		// add the top and bottom panels to the root by id
 		RootPanel.get("topPanel").add(topPanel);
 		RootPanel.get("bottomPanel").add(bottomPanel);
-		
-		// does nothing, but is required for drop handlers to work, and drop handler is needed
-		RootPanel.get().addDomHandler(new DragOverHandler() {
-			@Override
-			public void onDragOver(DragOverEvent event) {
-			}
-		}, DragOverEvent.getType());
-		// redraw page if card is dropped out of bounds
-		RootPanel.get().addDomHandler(new DropHandler() {
-			@Override
-			public void onDrop(DropEvent event) {
-				draw();
-			}
-		}, DropEvent.getType());
 	}
 	
 	/*
 	 * 'Draw' the page, called when any drop action is made. 
 	 */
-	private void draw() {
+	public static void draw() {
 		// clear all contents from page
 		freecells.clear();
 		foundations.clear();

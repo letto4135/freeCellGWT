@@ -12,6 +12,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 
+import life.client.FreeCellGame;
 import life.client.DeckItems.Card;
 
 /**
@@ -23,7 +24,6 @@ public class GWTCard extends HTML {
 	Card card = null;
 	Widget CHILD = this;
 	Widget PARENT = this.getParent();
-	SimpleEventBus bus = new SimpleEventBus();
 	
 	/**
 	 * Instantiates a blank card
@@ -51,6 +51,7 @@ public class GWTCard extends HTML {
 			@Override
 			public void onDragEnd(DragEndEvent event) {
 				event.setData("card", uniqueID);
+				draw();
 			}
 		});
 	}
@@ -127,6 +128,7 @@ public class GWTCard extends HTML {
 				// check that card is able to be placed before removing from parent
 				CHILD.removeFromParent();
 				event.setData("card", card.toString());
+				draw();
 			}
 		});
 	}
@@ -144,6 +146,10 @@ public class GWTCard extends HTML {
 		}
 		
 		return id;
+	}
+	
+	private void draw() {
+		FreeCellGame.draw();
 	}
 }
 	
