@@ -5,6 +5,7 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.EventTarget;
 import com.google.gwt.event.dom.client.DropEvent;
 import com.google.gwt.event.dom.client.DropHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -184,6 +185,9 @@ public class FreeCellGame implements EntryPoint {
 				if(destination.substring(0, 3).equals("fou")) {
 					Foundation f = model.foundations.get(Integer.parseInt(destination.substring(destination.length() - 1)));
 					checkMove(f, source);
+					if(checkWin()) {
+						Window.alert("YOU'VE WON! Congratulations!");
+					}
 				}
 				// to column
 				if(destination.substring(0, 3).equals("col")){
@@ -225,5 +229,21 @@ public class FreeCellGame implements EntryPoint {
 				fr.removeCard();
 			}catch(IllegalArgumentException e){}
 		}
+	}
+	
+	/*
+	 * Checks to see if player has won.
+	 */
+	private boolean checkWin() {
+		boolean win = true;
+		for(int i = 0; i < model.columns.size(); i++) {
+			if(!win) {
+				break;
+			}
+			if(model.columns.get(i).size() > 1) {
+				win = false;
+			}
+		}
+		return win;
 	}
 }
