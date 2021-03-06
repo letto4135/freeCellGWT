@@ -1,1 +1,0 @@
-<?php header( 'Location: /war/FreeCell.html' ) ;  ?>

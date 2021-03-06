@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "freecell4135",
+    "public": "war",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/FreeCell.html"
+      }
+    ]
+  }
+}
